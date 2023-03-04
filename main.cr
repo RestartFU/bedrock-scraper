@@ -1,5 +1,9 @@
 require "./query"
 require "./logger"
+require "socket"
+
+cli = TCPSocket.new
+cli.connect "192.168.2.157", 8081
 
 MAX_IPV4 = 4294967296
 print "\e[1;1H\e[2J"
@@ -44,9 +48,7 @@ end
             addr = "#{w}.#{z}.#{y}.#{x}"
             r = Query.query addr, 19132
             if r != nil
-                File.open("./server_list.txt", "a") do |file|
-                    file.puts addr + " = " + r.to_json
-                end
+                cli.send "#{addr} = #{r.to_json}"
                 success += 1
             end
             running -= 1 
