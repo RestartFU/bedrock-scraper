@@ -1,13 +1,10 @@
 require "./query"
-require"./logger"
-require "io"
+require "./logger"
 
 running = 0
 
 success = 0
 tot = 0
-
-Logger.info "test"
 
 256.times do |x|
   256.times do |y|
