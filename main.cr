@@ -1,19 +1,21 @@
 require "./query"
 require "./logger"
 
+print "\e[1;1H\e[2J"
+
 running = 0
 success = 0
 total = 0
 
 MAX_IPV4 = 4294967296
-
 estimate_time_left = Time::Span.new
 
 spawn do
     while true
-        estimate_time_left = Time::Span.new(seconds: ((MAX_IPV4 - total) / running).to_i64)
+        print "\x1b[1A\x1b[2K\r"
         Logger.print_info "(#{success}/#{total}) #{((total * 100) / MAX_IPV4).round(2)}% done #{(estimate_time_left.total_hours - (estimate_time_left.minutes / 60)).to_i64}h#{estimate_time_left.minutes}m#{estimate_time_left.seconds}s left"
         sleep 1.seconds
+        estimate_time_left = Time::Span.new(seconds: ((MAX_IPV4 - total) / running).to_i64)
     end
 end
 

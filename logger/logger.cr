@@ -11,7 +11,7 @@ module Logger
         puts "#{Color::RESET}#{INFO}#{s}"
     end
     def print_info(s)
-        print "\x1b[1A\x1b[2K\r#{Color::RESET}#{INFO}#{s}"
+        print "#{Color::RESET}#{INFO}#{s}"
     end
     def error(s)
         puts "#{Color::RESET}#{ERROR}#{s}"
