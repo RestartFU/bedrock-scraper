@@ -6,11 +6,22 @@ MSG = Base64.decode "AQAAAABkAk6fAP//AP7+/v79/f39EjRWeAAAAAAAAAAA"
 module Query
   extend self
   def query(addr : String, port : Int64) : Result | Nil
-    client = UDPSocket.new
-    client.connect addr, port
+    begin
+      client = UDPSocket.new
+      client.close_on_exec = true
+    rescue ex
+      p ex.message
+      return nil
+    end
+
+    begin
+      client.connect addr, port
+    rescue ex
+      return nil
+    end
 
     client.send MSG
-    client.read_timeout = 5
+    client.read_timeout = 2
     
     begin
       res, _ = client.receive
@@ -27,7 +38,7 @@ module Query
         arr[8]
       )
     end
-    rescue
+    rescue ex
       return nil
     end
   end
