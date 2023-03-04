@@ -1,4 +1,0 @@
-90.250.1.0 = {"motd":"Shrimps_Home_Server","protocol_version":568,"version":"1.19.63","player_count":0,"max_player_count":10,"software":"Bedrock level","gamemode":"Creative"}
-90.250.1.0 = {"motd":"Shrimps_Home_Server","protocol_version":568,"version":"1.19.63","player_count":0,"max_player_count":10,"software":"Bedrock level","gamemode":"Creative"}
-114.116.8.0 = {"motd":"test2","protocol_version":557,"version":"1.19.41","player_count":0,"max_player_count":10,"software":"Our World","gamemode":"Survival"}
-84.245.13.0 = {"motd":"Dedicated Server","protocol_version":567,"version":"1.19.62","player_count":0,"max_player_count":10,"software":"Bedrock level","gamemode":"Survival"}

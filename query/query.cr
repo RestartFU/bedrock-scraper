@@ -1,5 +1,6 @@
 require "socket"
 require "./result"
+require "../logger"
 
 MSG = Base64.decode "AQAAAABkAk6fAP//AP7+/v79/f39EjRWeAAAAAAAAAAA"
 
@@ -10,13 +11,13 @@ module Query
       client = UDPSocket.new
       client.close_on_exec = true
     rescue ex
-      p ex.message
+      Logger.error ex.to_s
       return nil
     end
 
     begin
       client.connect addr, port
-    rescue ex
+    rescue
       return nil
     end
 
@@ -38,7 +39,7 @@ module Query
         arr[8]
       )
     end
-    rescue ex
+    rescue
       return nil
     end
   end
