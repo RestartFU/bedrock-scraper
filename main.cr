@@ -18,9 +18,11 @@ spawn do
     end
 end
 
+include Logger::Utils # cursor_beg(); cursor_up(); clear_line()
+
 spawn do
     while true
-        print "\x1b[1A\x1b[2K\r"
+        cursor_beg(); cursor_up(); clear_line()
         Logger.print_info "(#{success}/#{total}) #{((total * 100) / MAX_IPV4).round(2)}% done #{(estimate_time_left.total_hours - (estimate_time_left.minutes / 60)).to_i64}h#{estimate_time_left.minutes}m#{estimate_time_left.seconds}s left"
         sleep 100.milliseconds
     end
@@ -34,7 +36,7 @@ end
         total += 1
 
         if running >= 20000
-            sleep 10.milliseconds
+            sleep 100.milliseconds
         end
         
         spawn do

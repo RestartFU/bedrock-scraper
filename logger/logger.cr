@@ -7,6 +7,19 @@ private ERROR = "ERRO #{SEP}"
 
 module Logger 
     extend self
+    module Utils
+        extend self
+        def clear_line()
+            print "\x1b[2K"
+        end
+        def cursor_up()
+            print "\x1b[1A"
+        end
+        def cursor_beg()
+            print "\r"
+        end
+    end
+
     def info(s)
         puts "#{Color::RESET}#{INFO}#{s}"
     end
