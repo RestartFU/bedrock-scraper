@@ -7,6 +7,7 @@ private ERROR = "ERRO #{SEP}"
 
 module Logger 
     extend self
+    
     module Utils
         extend self
         def clear_line()

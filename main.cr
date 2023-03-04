@@ -10,12 +10,14 @@ total = 0
 estimate_time_left = Time::Span.new
 elapsed_seconds = 0
 
+sleep 1.seconds
+
 spawn do
     while true
-        sleep 1.seconds
         elapsed_seconds += 1
         estimate_time_left = Time::Span.new(seconds: ((MAX_IPV4 - total) / (total / elapsed_seconds)).to_i64)
-    end
+        sleep 1.seconds
+      end
 end
 
 include Logger::Utils # cursor_beg(); cursor_up(); clear_line()
@@ -23,7 +25,7 @@ include Logger::Utils # cursor_beg(); cursor_up(); clear_line()
 spawn do
     while true
         cursor_beg(); cursor_up(); clear_line()
-        Logger.print_info "(#{success}/#{total}) #{((total * 100) / MAX_IPV4).round(2)}% done #{(estimate_time_left.total_hours - (estimate_time_left.minutes / 60)).to_i64}h#{estimate_time_left.minutes}m#{estimate_time_left.seconds}s left"
+        Logger.info "(#{success}/#{total}) #{((total * 100) / MAX_IPV4).round(2)}% done #{(estimate_time_left.total_hours - (estimate_time_left.minutes / 60)).to_i64}h#{estimate_time_left.minutes}m#{estimate_time_left.seconds}s left (#{(((total / elapsed_seconds) * 22) / 1000).round(2)}kb/s)"
         sleep 100.milliseconds
     end
 end
@@ -35,10 +37,9 @@ end
         running += 1
         total += 1
 
-        if running >= 20000
+        if running >= 12000
             sleep 100.milliseconds
         end
-        
         spawn do
             addr = "#{w}.#{z}.#{y}.#{x}"
             r = Query.query addr, 19132
@@ -49,8 +50,7 @@ end
                 success += 1
             end
             running -= 1 
-
-        end
+          end
       end
     end
   end
