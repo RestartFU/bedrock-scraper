@@ -7,10 +7,13 @@ private ERROR = "ERRO #{SEP}"
 
 module Logger 
     extend self
-    def info(s : String)
+    def info(s)
         puts "#{Color::RESET}#{INFO}#{s}"
     end
-    def error(s : String)
+    def print_info(s)
+        print "\x1b[1A\x1b[2K\r#{Color::RESET}#{INFO}#{s}"
+    end
+    def error(s)
         puts "#{Color::RESET}#{ERROR}#{s}"
     end
 end

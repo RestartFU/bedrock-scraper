@@ -10,7 +10,7 @@ module Query
     begin
       client = UDPSocket.new
     rescue ex
-      Logger.error ex.to_s
+      Logger.error ex
       return nil
     end
 
