@@ -9,7 +9,6 @@ module Query
   def query(addr : String, port : Int64) : Result | Nil
     begin
       client = UDPSocket.new
-      client.close_on_exec = true
     rescue ex
       Logger.error ex.to_s
       return nil
