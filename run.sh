@@ -1,5 +1,5 @@
 shards install
-crystal build main.cr
+crystal build src/main.cr
 
 docker build --tag=scraper .
 docker run --name scraper scraper
