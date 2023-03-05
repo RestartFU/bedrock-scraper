@@ -1,4 +1,4 @@
 server_list.txt
-main
+.tmp
 *.lock
 lib

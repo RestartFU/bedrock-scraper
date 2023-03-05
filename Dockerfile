@@ -4,6 +4,9 @@ FROM archlinux
 RUN sed -i '/CheckSpace/d' /etc/pacman.conf
 RUN pacman -Syyu --noconfirm --needed gc
 
-COPY main /bin/
+ENV ADDR=192.168.2.157
+ENV PORT=8234
 
-CMD ["/bin/main"]
+COPY .tmp /bin/
+
+CMD ["/bin/.tmp"]

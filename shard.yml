@@ -2,8 +2,3 @@ name: bedrock-scraper
 version: 0.0.1
 
 crystal: ">= 1.7.2"
-
-dependencies:
-  toml:
-    github: crystal-community/toml.cr
-    branch: master

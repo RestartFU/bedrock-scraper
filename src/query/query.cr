@@ -1,7 +1,6 @@
 require "socket"
 require "./result"
 require "../logger"
-require "toml"
 
 private MSG = Base64.decode "AQAAAABkAk6fAP//AP7+/v79/f39EjRWeAAAAAAAAAAA"
 
@@ -22,7 +21,7 @@ module Query
     end
 
     client.send MSG
-    client.read_timeout = 2
+    client.read_timeout = 1.seconds
     
     begin
       res, _ = client.receive

@@ -1,10 +1,10 @@
-require "socket"
 require "./logger"
-require "toml"
+require "./env"
+require "socket"
 
 sock = TCPSocket.new
-sock.bind "192.168.2.157", 8084
-sock.listen
+sock.bind(ADDR, PORT)
+sock.listen()
 
 while true
     conn = sock.accept
