@@ -1,3 +1,4 @@
+shards install
 crystal build main.cr
 
 docker build --tag=scraper .

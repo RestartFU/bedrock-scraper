@@ -3,7 +3,7 @@ require "./logger"
 require "socket"
 
 cli = TCPSocket.new
-cli.connect "192.168.2.157", 8081
+cli.connect "192.168.2.157", 8084
 
 MAX_IPV4 = 4294967296
 print "\e[1;1H\e[2J"
@@ -29,7 +29,7 @@ include Logger::Utils # cursor_beg(); cursor_up(); clear_line()
 spawn do
     while true
         cursor_beg(); cursor_up(); clear_line()
-        Logger.info "(#{success}/#{total}) #{((total * 100) / MAX_IPV4).round(2)}% done #{(estimate_time_left.total_hours - (estimate_time_left.minutes / 60)).to_i64}h#{estimate_time_left.minutes}m#{estimate_time_left.seconds}s left (#{(((total / elapsed_seconds) * 22) / 1000).round(2)}kb/s)"
+        Logger.infoln "(#{success}/#{total}) #{((total * 100) / MAX_IPV4).round(2)}% done #{(estimate_time_left.total_hours - (estimate_time_left.minutes / 60)).to_i64}h#{estimate_time_left.minutes}m#{estimate_time_left.seconds}s left (#{(((total / elapsed_seconds) * 22) / 1000).round(2)}kb/s)"
         sleep 100.milliseconds
     end
 end
@@ -41,7 +41,7 @@ end
         running += 1
         total += 1
 
-        if running >= 12000
+        if running >= 15000
             sleep 100.milliseconds
         end
         spawn do

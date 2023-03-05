@@ -1,2 +1,4 @@
 server_list.txt
 main
+*.lock
+lib
