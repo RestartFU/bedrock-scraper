@@ -2,3 +2,8 @@ name: bedrock-scraper
 version: 0.0.1
 
 crystal: ">= 1.7.2"
+
+dependencies:
+  logger:
+    github: Pragu3/logger.cr
+    branch: master
